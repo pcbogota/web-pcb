@@ -1,4 +1,4 @@
-import { createClient } from "@libsql/client/web";
+import { createClient } from "@libsql/client";
 
 export default async function handler(req, res) {
   // Verificación de variables para asegurar que Node 24 las lea
