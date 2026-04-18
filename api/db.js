@@ -14,12 +14,10 @@ export default async function handler(req, res) {
     // usar protocolos de replicación.
   });
 
+  
   try {
     // Usamos el método .execute con el formato de objeto que es más robusto
-    const result = await db.execute({
-      sql: "SELECT * FROM client WHERE id = ?",
-      args: [1]
-    });
+    const result = await db.execute("SELECT * FROM client");
 
     if (!result.rows || result.rows.length === 0) {
       return res.status(404).json({ message: "Cliente no encontrado" });
