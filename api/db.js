@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         requests: [
-          { type: "execute", stmt: { sql: "SELECT * FROM client WHERE" } },
+          { type: "execute", stmt: { sql: "SELECT * FROM client" } },
           { type: "close" },
         ],
       }),
