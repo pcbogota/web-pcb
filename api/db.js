@@ -1,4 +1,4 @@
-import { createClient } from "@libsql/client";
+import { createClient } from "@libsql/client/web";
 
 export default async function handler(req, res) {
   // Configuramos el cliente de Turso con tus variables de entorno
