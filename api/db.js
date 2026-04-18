@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         requests: [
-          { type: "execute", stmt: { sql: "SELECT * FROM client" } },
+          { type: "execute", stmt: { sql: "SELECT * FROM client WHERE id = 2" } },
           { type: "close" },
         ],
       }),
@@ -23,23 +23,21 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: "Error en Turso", detalle: data });
     }
 
-    // --- PROCESAMIENTO DE DATOS ---
     const result = data.results[0].response.result;
-    const columns = result.cols; // Los nombres de tus columnas
-    const rows = result.rows;    // Los valores
+    const columns = result.cols; 
+    const rows = result.rows;    
 
-    if (rows.length === 0) {
-      return res.status(404).json({ message: "Cliente no encontrado" });
-    }
-
-    // Mapeamos el array feo a un objeto { columna: valor }
-    const cleanClient = {};
-    columns.forEach((col, index) => {
-      cleanClient[col.name] = rows[0][index].value;
+    // MAPEADO DE TODOS LOS REGISTROS
+    const cleanList = rows.map((row) => {
+      let item = {};
+      columns.forEach((col, index) => {
+        item[col.name] = row[index].value;
+      });
+      return item;
     });
 
-    // Resultado final limpio
-    return res.status(200).json(cleanClient);
+    // Devolvemos la lista completa de clientes
+    return res.status(200).json(cleanList);
 
   } catch (error) {
     return res.status(500).json({ error: "Error de servidor", detalle: error.message });
