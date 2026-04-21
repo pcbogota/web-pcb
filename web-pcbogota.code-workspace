@@ -57,6 +57,15 @@
 		"terminal.integrated.cursorBlinking": true,
 		"terminal.integrated.cursorStyle": "line",
 		"terminal.integrated.cursorWidth": 2,
+		"terminal.integrated.profiles.windows": {
+			"PowerShellForGit": {
+				"source": "PowerShell",
+				"icon": "terminal-powershell",
+				"args": ["-NoExit", "-NoLogo", "-File", ".\\ps-modules\\init.ps1"],
+			},
+		},
+		"terminal.integrated.defaultProfile.windows": "PowerShellForGit",
+
 		"workbench.editor.highlightModifiedTabs": true,
 		"workbench.editor.showTabs": "multiple",
 		"workbench.editor.wrapTabs": false,
@@ -75,22 +84,28 @@
 		"powershell.enableProfileLoading": true,
 		"powershell.pester.debugOutputVerbosity": "Detailed",
 		"powershell.integratedConsole.focusConsoleOnExecute": false,
-		"powershell.integratedConsole.forceClearScrollbackBuffer": true,
+		"powershell.integratedConsole.forceClearScrollbackBuffer": false,
+		"powershell.integratedConsole.suppressStartupBanner": true,
 
-		"[powershell]": {
-			"files.autoGuessEncoding": false,
-			"editor.defaultFormatter": "ms-vscode.powershell",
-			"files.encoding": "utf8bom",
-		},
 		"[bat]": {
 			"files.autoGuessEncoding": false,
 			"editor.defaultFormatter": "ms-vscode.powershell",
 			"files.encoding": "cp850",
 		},
+		"[html]": {
+			"editor.defaultFormatter": "esbenp.prettier-vscode",
+			"editor.insertSpaces": false,
+			"editor.tabSize": 4,
+		},
 		"[cmd]": {
 			"files.autoGuessEncoding": false,
 			"editor.defaultFormatter": "ms-vscode.powershell",
 			"files.encoding": "cp850",
+		},
+		"[powershell]": {
+			"files.autoGuessEncoding": false,
+			"editor.defaultFormatter": "ms-vscode.powershell",
+			"files.encoding": "utf8bom",
 		},
 		"[xml]": {
 			"editor.defaultFormatter": "mikeburgh.xml-format",
@@ -100,6 +115,14 @@
 		},
 	},
 	"extensions": {
-		"recommendations": ["ms-vscode.powershell", "shd101wyy.markdown-preview-enhanced"],
+		"recommendations": [
+			"ms-vscode.powershell",
+			"shd101wyy.markdown-preview-enhanced",
+			"mikeburgh.xml-format",
+			"esbenp.prettier-vscode",
+			"Tyriar.sort-lines",
+			"jock.svg",
+			"NilsSoderman.batch-runner",
+		],
 	},
 }

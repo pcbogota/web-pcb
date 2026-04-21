@@ -1,37 +1,331 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>PCBogota</title>
-    <link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml">
-    <style>
-        *{
-            padding: 0;
-            margin: 0;
-        }
-        html{
-            background-color: black;
-            font-size: 62.5%;
-            font-family: sans-serif;
-        }
-        body{
-            font-size: 1.6rem;
-        }
-        #main-logo{
-            width: 80%;
-            max-width: 1024px;
-            display: block;
-            margin: auto;
-            height: 100dvh;
-        }
-        h1{
-                position: absolute;
-                color: red;
-                text-indent: -10000px;
-        }
-    </style>
-</head>
-<body>
-    <h1>PCBogota.com</h1>
-    <img id="main-logo" src="https://raw.githubusercontent.com/pcbogota/logistic-data/refs/heads/main/Imagenes/logo-pcbogota-dark-bg.svg" alt="logo-pcbogota-dark">
-</body>
+$html = @'
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#0b0b0b" />
+		<title>PCBogota</title>
+		<link rel="icon" href="./assets/icons/favicon.svg" type="image/svg+xml" />
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			:root {
+				--text-color: #ccc;
+				--text-console-width: 16.5em;
+			}
+
+			html {
+				font-size: 62.5%;
+				font-family: sans-serif;
+			}
+
+			body {
+				background-color: #0b0b0b;
+				font-size: 1.6rem;
+				position: relative;
+			}
+
+			h1,
+			h2,
+			h3,
+			h4 {
+				text-align: center;
+			}
+			h1 {
+				position: absolute;
+				color: red;
+				text-indent: -10000px;
+			}
+
+			main {
+				background-color: #0b0b0b;
+				color: var(--text-color);
+				font-family: sans-serif;
+				font-size: 1.6rem;
+				min-height: 100%;
+				left: 0;
+				margin: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+
+			header .wrapper {
+				padding: 1em;
+			}
+
+			#main-logo {
+				width: 80%;
+				max-width: 256px;
+				display: block;
+				margin: auto;
+			}
+
+			#title_construction {
+				font-size: 28px;
+				margin: 1em 0;
+				max-width: 800px;
+				width: 100%;
+			}
+
+			.psWindows {
+				position: relative;
+				width: 698px;
+				margin: 0 auto;
+			}
+
+			.text-psWindows {
+				font-family: monospace;
+				font-size: 1.9rem;
+				font-weight: bolder;
+				left: 34.5%;
+				position: absolute;
+				top: 25%;
+			}
+
+			.text-psWindows .console-text {
+				width: var(--text-console-width);
+				display: inline-block;
+				overflow: hidden;
+				height: 1.2065em;
+				animation: writing 16s steps(30) 1s infinite normal both;
+				white-space: nowrap;
+			}
+
+			.text-psWindows .cursor {
+				animation: blink 1s infinite;
+				background-color: var(--text-color);
+				display: inline-block;
+				height: 6px;
+				width: 12px;
+			}
+
+			.text-psWindows .text-color-yellow {
+				color: #f9f1a5;
+			}
+
+			.wrapper {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			@keyframes blink {
+				0% {
+					opacity: 0;
+				}
+
+				49% {
+					opacity: 0;
+				}
+
+				50% {
+					opacity: 100;
+				}
+
+				99% {
+					opacity: 100;
+				}
+			}
+			@keyframes writing {
+				0% {
+					width: 0;
+				}
+
+				25% {
+					width: var(--text-console-width);
+				}
+
+				92% {
+					width: var(--text-console-width);
+				}
+
+				98% {
+					width: 0;
+				}
+
+				100% {
+					width: 0;
+				}
+			}
+
+			@media screen and (max-width: 720px) {
+				.pswindows img {
+					display: none;
+				}
+
+				.psWindows {
+					width: 100%;
+				}
+
+				.text-psWindows {
+					position: relative;
+					top: unset;
+					left: unset;
+					text-align: center;
+					width: 95%;
+				}
+
+				.text-psWindows .console-text {
+					display: inline-block;
+					white-space: unset;
+					word-break: break-all;
+					animation: none;
+					width: unset;
+					height: unset;
+				}
+
+				.text-psWindows .cursor {
+					transform: translate(0px, 4px);
+				}
+
+				@keyframes writing {
+					0% {
+						width: 0;
+					}
+
+					25% {
+						width: fit-content;
+					}
+
+					92% {
+						width: fit-content;
+					}
+
+					98% {
+						width: 0;
+					}
+
+					100% {
+						width: 0;
+					}
+				}
+			}
+
+			@media screen and (max-width: 480px) {
+				.text-psWindows .cursor {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<header>
+				<h1>PCBogota.com</h1>
+
+				<div class="wrapper">
+					<img
+						id="main-logo"
+						src="https://raw.githubusercontent.com/pcbogota/logistic-data/refs/heads/main/Imagenes/logo-pcbogota-dark-bg.svg"
+						alt="logo-pcbogota-dark"
+						height="128"
+					/>
+					<h2 id="title_construction">
+						<span class="title_construction-separator">...-|</span> EN CONSTRUCCION <span class="title_construction-separator">|-...</span>
+					</h2>
+				</div>
+			</header>
+			<section id="instructions">
+				<div class="pswindows">
+					<img
+						src="https://raw.githubusercontent.com/pcbogota/logistic-data/refs/heads/main/Imagenes/pswindow.png"
+						alt="ventana de powershell"
+					/>
+					<p class="text-psWindows">
+						<span class="console-text">
+							<span class="text-color-yellow">irm </span>https://pcbogota.com | <span class="text-color-yellow">iex</span>
+						</span>
+						<span class="cursor"> </span>
+					</p>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>
+<!--
+'@
+<######### WARNING!!! This an hybrid HTML and powershell script #>
+if (![console]) { $html } Write-Host "hello!"
+
+function Get-CenteredText {
+	param(
+		[Parameter(Mandatory = $true)]
+		[string]$Text,
+		[switch]$SidePadding
+	)
+
+	$padding = ' ' * [math]::Max(0, (([console]::WindowWidth - (($Text.length) + 1)) / 2))
+	if ($SidePadding) { return $padding } else { return "$padding$text$padding" }
+
+}
+
+
+function write-Logo {
+	<#
+	.SYNOPSIS
+		Imprime un logo personalizado en la consola de PowerShell.
+
+	.DESCRIPTION
+		Esta función genera e imprime un logo en la consola, utilizando caracteres especiales y códigos de escape ANSI para colores y formatos.  El logo incluye el nombre "Camilo Salazar (ChyBeat)", el año actual y un mensaje de copyright.
+
+	.EXAMPLE
+		PS> Write-Logo!"
+
+	.NOTES
+		Autor: Camilo Salazar
+		Fecha de creación: 2025-02-07
+		Fecha de modificación: 2025-12-05
+		Versión: 1.0.2.a - (Simplificado)
+	#>
+
+	$c = $([char]9608)
+	$d = $([char]9612)
+	$i = $([char]9616)
+	$p = $([char]0x25CF)
+	$logoWide = 93
+	$cl = @{
+		ty = $global:TerminalColor.txt.orange
+		tr = $global:TerminalColor.txt.red
+		tw = $global:TerminalColor.txt.white
+	}
+
+	if ($w10) {	$c = $([char]9209) }
+
+	if ($psISE) {
+		$padd = $(Get-CenteredText -Text 'PCBOGOTA.COM' -SidePadding)
+		Write-Host "`n`n$($padd)P" -ForegroundColor Yellow -NoNewline
+		Write-Host "C" -ForegroundColor Red -NoNewline
+		Write-Host "Bogota.com`n`n" -ForegroundColor White
+		return
+	} else {
+		$padd = Get-CenteredText -Text (" " * $logoWide) -SidePadding
+	}
+	$Logo_P = $($cl.ty); $Logo_C1 = $($cl.tr); $Logo_B = $($cl.tw); $Logo_o1 = $($cl.tw); $Logo_G = $($cl.tw); $Logo_o2 = $($cl.tw); $Logo_T = $($cl.tw); $Logo_A = $($cl.tw); $Logo_DOT = $($cl.tw); $Logo_C2 = $($cl.tw); $Logo_o3 = $($cl.tw); $Logo_M = $($cl.tw); $logo = "`n$($padd)$($Logo_P)$c$c$c$c$c$c$c$c $($Logo_C1)$c$c$c$c$c$c$c$c`n"
+	$logo += "$($padd)$($Logo_P)$c$c    $c$c $($Logo_C1)$c$c    $c$c $($Logo_B)$c$c$c$c$c$c$d $($Logo_o1)$c$c$c$c$c$c$c $($Logo_G)$c$c$c$c$c$c$c $($Logo_o2)$c$c$c$c$c$c$c $($Logo_T)$c$c$c$c$c$c $($Logo_A)$c$c$c$c$c$c$c   $($Logo_C2)$c$c$c$c$c$c $($Logo_o3)$c$c$c$c$c$c$c $($Logo_M)$c$c$c$c$d$i$c$c$c$c`n"
+	$logo += "$($padd)$($Logo_P)$c$c    $c$c $($Logo_C1)$c$c       $($Logo_B)$c$c   $c$d $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c      $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c   $($Logo_C2)$c$c     $($Logo_o3)$c$c   $c$c $($Logo_M)$c$c  $c$c  $c$c `n"
+	$logo += "$($padd)$($Logo_P)$c$c$c$c$c$c$c$c $($Logo_C1)$c$c       $($Logo_B)$c$c$c$c$c$c$c $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c  $c$c$c $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c$c$c$c$c$c   $($Logo_C2)$c$c     $($Logo_o3)$c$c   $c$c $($Logo_M)$c$c  $c$c  $c$c `n"
+	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c    $c$c $($Logo_B)$c$c   $c$c $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c   $c$c $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c   $($Logo_C2)$c$c     $($Logo_o3)$c$c   $c$c $($Logo_M)$c$c  $c$c  $c$c `n"
+	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c$c$c$c$c$c$c $($Logo_B)$c$c$c$c$c$c$c $($Logo_o1)$c$c$c$c$c$c$c $($Logo_G)$c$c$c$c$c$c$c $($Logo_o2)$c$c$c$c$c$c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c $($Logo_DOT)$p $($Logo_C2)$c$c$c$c$c$c $($Logo_o3)$c$c$c$c$c$c$c $($Logo_M)$c$c  $c$c  $c$c `n"
+	$logo += "$([char]0x1b)[0m"
+	Write-Host $logo
+}
+
+$global:TerminalColor = [PSCustomObject]@{
+	txt = [PSCustomObject]@{
+		orange = "$([char]0x1b)[38;5;214m" #Texto naranja P de PCBogota
+		red    = "$([char]0x1b)[38;5;196m" #Texto rojo
+		white  = "$([char]0x1b)[38;5;15m" #Texto Blanco
+	}
+}
+
+Clear-Host
+Write-Logo
+
+Write-Host (Get-CenteredText -Text "...-| EN CONSTRUCCION |-...") -ForegroundColor White
+#-->
