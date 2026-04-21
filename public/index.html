@@ -312,14 +312,7 @@ function write-Logo {
 	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c       $($Logo_B)$c$c   $c$c $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c   $c$c $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c`n"
 	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c$c$c$c$c$c$c $($Logo_B)$c$c$c$c$c$c$c $($Logo_o1)$c$c$c$c$c$c$c $($Logo_G)$c$c$c$c$c$c$c $($Logo_o2)$c$c$c$c$c$c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c`n"
 	$logo += "$([char]0x1b)[0m"
-
-	$logo.ToCharArray() | ForEach-Object {
-		Write-Host $_ -NoNewline -ForegroundColor gray
-	}
-	Write-Host "$(" " * $logoWide) $($padd) ..." -NoNewline
-	start-sleep 4
-	Clear-Host
-	Write-Host $logo
+	return $logo
 }
 
 $global:TerminalColor = [PSCustomObject]@{
@@ -331,7 +324,56 @@ $global:TerminalColor = [PSCustomObject]@{
 }
 
 Clear-Host
-Write-Logo
-Write-Host (Get-CenteredText -Text "...-| EN CONSTRUCCION |-...") -ForegroundColor White
+$logo = Write-Logo
+
+$ansiPattern = "\e\[[0-9;]*[mK]"
+$cleanLogo = $logo -replace $ansiPattern, ""
+$cleanLogo.ToCharArray() | ForEach-Object {
+	# Si es un espacio, se imprime al instante
+	if ([string]::IsNullOrWhiteSpace($_)) {
+		Write-Host $_ -NoNewline
+	}
+	else {
+		Write-Host $_ -NoNewline -ForegroundColor DarkGray
+		[System.Threading.Thread]::Sleep(10)
+	}
+}
+$logoWide = 64
+$padd = Get-CenteredText -Text (" " * $logoWide) -SidePadding
+$paddText = "$(" " * $logoWide) $($padd) ..."
+Write-Host $paddText -NoNewline
+
+$frames = @("|", "/", "-", "\")
+$iterations = 10 # Cuántas vueltas da
+for ($i = 0; $i -lt $iterations; $i++) {
+	foreach ($frame in $frames) {
+		Write-Host "`b$frame" -NoNewline -ForegroundColor Cyan
+		[System.Threading.Thread]::Sleep(50)
+	}
+}
+# Borra el último frame del spinner antes de seguir
+Write-Host "`b "
+Clear-Host
+Write-Host $logo
+
+# Espaciado para que no pegue con el logo
+# Iniciamos el Glitch de "En construccion"
+$ConstructionText = '>> [ EN CONSTRUCCION ] <<'
+$padd = Get-CenteredText -Text (" " * ($($ConstructionText.length))) -SidePadding
+$target = "$padd $ConstructionText"
+$chars = "X01#"
+$current = ""
+
+for ($i = 0; $i -lt $target.Length; $i++) {
+    $randomChar = $chars[(Get-Random -Maximum $chars.Length)]
+    Write-Host "`r$current$randomChar" -NoNewline -ForegroundColor Gray
+    [System.Threading.Thread]::Sleep(1)
+    $current += $target[$i]
+    Write-Host "`r$current" -NoNewline -ForegroundColor White
+}
+Write-Host ""
+
+
+# Write-Host (Get-CenteredText -Text "...-| EN CONSTRUCCION |-...") -ForegroundColor White
 Start-Sleep -milliseconds 100
 #-->
