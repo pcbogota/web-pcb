@@ -281,14 +281,12 @@ function write-Logo {
 		Autor: Camilo Salazar
 		Fecha de creación: 2025-02-07
 		Fecha de modificación: 2025-12-05
-		Versión: 1.0.2.a - (Simplificado)
+		Versión: 1.0.2.b - (Simplificado)
 	#>
 
 	$c = $([char]9608)
 	$d = $([char]9612)
-	$i = $([char]9616)
-	$p = $([char]0x25CF)
-	$logoWide = 93
+	$logoWide = 64
 	$cl = @{
 		ty = $global:TerminalColor.txt.orange
 		tr = $global:TerminalColor.txt.red
@@ -306,13 +304,21 @@ function write-Logo {
 	} else {
 		$padd = Get-CenteredText -Text (" " * $logoWide) -SidePadding
 	}
-	$Logo_P = $($cl.ty); $Logo_C1 = $($cl.tr); $Logo_B = $($cl.tw); $Logo_o1 = $($cl.tw); $Logo_G = $($cl.tw); $Logo_o2 = $($cl.tw); $Logo_T = $($cl.tw); $Logo_A = $($cl.tw); $Logo_DOT = $($cl.tw); $Logo_C2 = $($cl.tw); $Logo_o3 = $($cl.tw); $Logo_M = $($cl.tw); $logo = "`n$($padd)$($Logo_P)$c$c$c$c$c$c$c$c $($Logo_C1)$c$c$c$c$c$c$c$c`n"
-	$logo += "$($padd)$($Logo_P)$c$c    $c$c $($Logo_C1)$c$c    $c$c $($Logo_B)$c$c$c$c$c$c$d $($Logo_o1)$c$c$c$c$c$c$c $($Logo_G)$c$c$c$c$c$c$c $($Logo_o2)$c$c$c$c$c$c$c $($Logo_T)$c$c$c$c$c$c $($Logo_A)$c$c$c$c$c$c$c   $($Logo_C2)$c$c$c$c$c$c $($Logo_o3)$c$c$c$c$c$c$c $($Logo_M)$c$c$c$c$d$i$c$c$c$c`n"
-	$logo += "$($padd)$($Logo_P)$c$c    $c$c $($Logo_C1)$c$c       $($Logo_B)$c$c   $c$d $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c      $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c   $($Logo_C2)$c$c     $($Logo_o3)$c$c   $c$c $($Logo_M)$c$c  $c$c  $c$c `n"
-	$logo += "$($padd)$($Logo_P)$c$c$c$c$c$c$c$c $($Logo_C1)$c$c       $($Logo_B)$c$c$c$c$c$c$c $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c  $c$c$c $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c$c$c$c$c$c   $($Logo_C2)$c$c     $($Logo_o3)$c$c   $c$c $($Logo_M)$c$c  $c$c  $c$c `n"
-	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c    $c$c $($Logo_B)$c$c   $c$c $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c   $c$c $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c   $($Logo_C2)$c$c     $($Logo_o3)$c$c   $c$c $($Logo_M)$c$c  $c$c  $c$c `n"
-	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c$c$c$c$c$c$c $($Logo_B)$c$c$c$c$c$c$c $($Logo_o1)$c$c$c$c$c$c$c $($Logo_G)$c$c$c$c$c$c$c $($Logo_o2)$c$c$c$c$c$c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c $($Logo_DOT)$p $($Logo_C2)$c$c$c$c$c$c $($Logo_o3)$c$c$c$c$c$c$c $($Logo_M)$c$c  $c$c  $c$c `n"
+	$Logo_P = $($cl.ty); $Logo_C1 = $($cl.tr); $Logo_B = $($cl.tw); $Logo_o1 = $($cl.tw); $Logo_G = $($cl.tw); $Logo_o2 = $($cl.tw); $Logo_T = $($cl.tw); $Logo_A = $($cl.tw);
+	$logo = "`n$($padd)$($Logo_P)$c$c$c$c$c$c$c$c $($Logo_C1)$c$c$c$c$c$c$c$c`n"
+	$logo += "$($padd)$($Logo_P)$c$c    $c$c $($Logo_C1)$c$c       $($Logo_B)$c$c$c$c$c$c$d $($Logo_o1)$c$c$c$c$c$c$c $($Logo_G)$c$c$c$c$c$c$c $($Logo_o2)$c$c$c$c$c$c$c $($Logo_T)$c$c$c$c$c$c $($Logo_A)$c$c$c$c$c$c$c`n"
+	$logo += "$($padd)$($Logo_P)$c$c    $c$c $($Logo_C1)$c$c       $($Logo_B)$c$c   $c$d $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c      $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c`n"
+	$logo += "$($padd)$($Logo_P)$c$c$c$c$c$c$c$c $($Logo_C1)$c$c       $($Logo_B)$c$c$c$c$c$c$c $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c  $c$c$c $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c$c$c$c$c$c`n"
+	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c       $($Logo_B)$c$c   $c$c $($Logo_o1)$c$c   $c$c $($Logo_G)$c$c   $c$c $($Logo_o2)$c$c   $c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c`n"
+	$logo += "$($padd)$($Logo_P)$c$c       $($Logo_C1)$c$c$c$c$c$c$c$c $($Logo_B)$c$c$c$c$c$c$c $($Logo_o1)$c$c$c$c$c$c$c $($Logo_G)$c$c$c$c$c$c$c $($Logo_o2)$c$c$c$c$c$c$c   $($Logo_T)$c$c   $($Logo_A)$c$c   $c$c`n"
 	$logo += "$([char]0x1b)[0m"
+
+	$logo.ToCharArray() | ForEach-Object {
+		Write-Host $_ -NoNewline -ForegroundColor gray
+	}
+	Write-Host "$(" " * $logoWide) $($padd) ..." -NoNewline
+	start-sleep 4
+	Clear-Host
 	Write-Host $logo
 }
 
@@ -326,6 +332,6 @@ $global:TerminalColor = [PSCustomObject]@{
 
 Clear-Host
 Write-Logo
-
 Write-Host (Get-CenteredText -Text "...-| EN CONSTRUCCION |-...") -ForegroundColor White
+Start-Sleep -milliseconds 100
 #-->
